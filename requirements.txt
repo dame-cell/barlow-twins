@@ -1,0 +1,6 @@
+torch 
+timm 
+torchvision
+matplotlib
+bitsandbytes 
+wandb
