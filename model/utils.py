@@ -21,12 +21,13 @@ def setup_seed(seed=42):
     np.random.seed(seed)
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
-
+    
 def warmup_lr(epoch):
-    if epoch < 4:
-        return (epoch + 1) / 4
+    if epoch < 20:  # Warm-up for the first 10% of the epochs
+        return (epoch + 1) / 20  # Linearly scale up the learning rate over 20 epochs
     else:
-        return 1  
+        return 1
+
 
 
 class GaussianBlur(object):
