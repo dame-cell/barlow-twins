@@ -1,11 +1,26 @@
 # Barlow Twins 
 Pytorch-Implementation of barlow twins -[Barlow Twins: Self-Supervised Learning via Redundancy Reduction](https://arxiv.org/pdf/2103.03230)
 
+
 <p align="center">
   <img src="model/image/image.png" alt="bt" width="900"/>
 </p>
 
 
+# Getting Started 
+- First git clone this repo 
+```bash 
+git clone https://github.com/dame-cell/barlow-twins.git
+```
+- Download some dependencies
+```bash 
+cd barlow-twins 
+pip install -r requirements.txt 
+cd model 
+```
+- To train the model you can simply just run this command 
+```python3 train_model.py --batch-size 28
+```
 
 ```bash
 @article{zbontar2021barlow,

@@ -80,7 +80,7 @@ if __name__ == "__main__":
     for epoch in range(args.epochs):
         model.train()
         # Adjust learning rate for warm-up
-        for param_group in optimizfer.param_groups:
+        for param_group in optimizer.param_groups:
             param_group['lr'] = lr_adjusted * warmup_lr(epoch)
 
         progress_bar = tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Epoch {epoch + 1}/{args.epochs}")
