@@ -34,7 +34,6 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-
     config = CFG()
     model = BarlowTwins(config=config)
     count_parameters(model)
@@ -42,7 +41,6 @@ if __name__ == "__main__":
     setup_seed(args.seed)
     wandb.login(key="04098c64a0b88d5f4ff90335b7f75613041420c6")
     wandb.init(project="barlow-twins-training", config=args, group=f"Barlow-twins",)
-
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(DEVICE)
     transform = Transform()
@@ -61,30 +59,22 @@ if __name__ == "__main__":
         shuffle=True,
         num_workers=4
     )
-
  
-
     lr_adjusted = args.lr * args.batch_size / 256
-
     params = [
         {'params': [p for n, p in model.named_parameters() if 'bias' not in n and 'bn' not in n]},
         {'params': [p for n, p in model.named_parameters() if 'bias' in n or 'bn' in n], 'lr': args.lr_bias, 'weight_decay': 0}
     ]
-
     # LARS optimizer
     optimizer = Lars(params, momentum=0.9, lr=lr_adjusted, weight_decay=args.weight_decay)
-    scheduler = CosineAnnealingLR(optimizer, T_max=args.epochs - 10, eta_min=lr_adjusted / 1000)
     scaler = torch.GradScaler()
     os.makedirs(args.checkpoint_dir, exist_ok=True)
-
     for epoch in range(args.epochs):
         model.train()
         # Adjust learning rate for warm-up
         for param_group in optimizer.param_groups:
             param_group['lr'] = lr_adjusted * warmup_lr(epoch)
-
         progress_bar = tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Epoch {epoch + 1}/{args.epochs}")
-
         for step, ((y1,y2),_) in progress_bar:
             y1 = y1.to(DEVICE)
             y2 = y2.to(DEVICE)
@@ -101,8 +91,6 @@ if __name__ == "__main__":
                         "epoch": epoch + 1,
                         "step": step + 1,
                     })
-
-
         model.eval()
         with torch.no_grad():
             val_progress_bar = tqdm(enumerate(val_loader), total=len(val_loader), desc=f"Validation {epoch + 1}/{args.epochs}")
@@ -111,11 +99,9 @@ if __name__ == "__main__":
             for val_step, ((y1,y2), _) in val_progress_bar:
                 y1 = y1.to(DEVICE)
                 y2 = y2.to(DEVICE)
-
                 with torch.autocast(device_type=DEVICE, dtype=torch.float16):
                     val_loss += model(y1,y2)
              
-
         val_loss /= len(val_loader)
         wandb.log({
                         "val_loss": val_loss,
@@ -123,9 +109,6 @@ if __name__ == "__main__":
                         "step": step + 1,
                     })
         print(f"Epoch {epoch + 1}/{args.epochs} - Train loss: {loss:.4f}, Val loss: {val_loss:.4f}")
-
-        if epoch >= 10:
-            scheduler.step() 
         
         if (epoch + 1) % args.save_epoch == 0:
             checkpoint_path = os.path.join(args.checkpoint_dir, f"barlow_twins_epoch_{epoch + 1}.pth")
