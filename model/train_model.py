@@ -28,7 +28,7 @@ def parse_args():
     parser.add_argument('--image_path', type=str, help="Path to an image for inference visualization")
     parser.add_argument('--mask_ratio', type=float, default=0.75, help="Masking ratio for MAE ")
     parser.add_argument('--checkpoint_dir', type=str, default="data", help="where to save your checkpoint model ")
-    parser.add_argument('--save_epoch', type=int, default=10, help="At what epoch to save your model")
+    parser.add_argument('--save_epoch', type=int, default=40, help="At what epoch to save your model")
 
     return parser.parse_args()
 
