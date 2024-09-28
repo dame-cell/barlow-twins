@@ -51,8 +51,6 @@ class BarlowTwins(nn.Module):
 
         # empirical cross-correlation matrix
         c = self.bn(z1).T @ self.bn(z2)
-
-        # divide by batch size (use self.config instead of self.args)
         c.div_(self.config.batch_size)
 
         # on-diagonal and off-diagonal loss
