@@ -89,7 +89,7 @@ if __name__ == "__main__":
             y1 = y1.to(DEVICE)
             y2 = y2.to(DEVICE)
             optimizer.zero_grad()
-            with torch.autocast(device_type="cuda", dtype=torch.float16):
+            with torch.autocast(device_type=DEVICE, dtype=torch.float16):
                 loss = model(y1,y2)
              
             scaler.scale(loss).backward()
@@ -112,7 +112,7 @@ if __name__ == "__main__":
                 y1 = y1.to(DEVICE)
                 y2 = y2.to(DEVICE)
 
-                with torch.autocast(device_type="cuda", dtype=torch.float16):
+                with torch.autocast(device_type=DEVICE, dtype=torch.float16):
                     val_loss += model(y1,y2)
              
 
