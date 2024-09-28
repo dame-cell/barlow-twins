@@ -39,7 +39,7 @@ class BarlowTwins(nn.Module):
     def __init__(self, config):
         super(BarlowTwins, self).__init__()
         self.config = config
-        self.encoder = torchvision.models.resnet50(zero_init_residual=True)
+        self.encoder = timm.create_model(self.config.model_name, pretrained=self.config.pretrained, num_classes=self.config.num_classes)
         self.projector = MLP(self.config)
         
         # normalization layer for the representations z1 and z2
