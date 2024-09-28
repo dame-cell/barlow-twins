@@ -23,6 +23,10 @@ cd model
 python3 train_model.py --batch_size 124 --checkpoint_dir "model" --epochs 500
 ```
 for the batch size it really depends on your hardware or GPUs ,if you are trying it on t4 try 124 anything better that t4 256 should do well.
+
+# Obersvations and Experiments
+
+
 ```bash
 @article{zbontar2021barlow,
   title={Barlow Twins: Self-Supervised Learning via Redundancy Reduction},
