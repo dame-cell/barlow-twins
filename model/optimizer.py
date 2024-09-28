@@ -1,11 +1,4 @@
-""" PyTorch LARS / LARC Optimizer
-An implementation of LARS (SGD) + LARC in PyTorch
-Based on:
-  * PyTorch SGD: https://github.com/pytorch/pytorch/blob/1.7/torch/optim/sgd.py#L100
-  * NVIDIA APEX LARC: https://github.com/NVIDIA/apex/blob/master/apex/parallel/LARC.py
-Additional cleanup and modifications to properly support PyTorch XLA.
-Copyright 2021 Ross Wightman
-"""
+# copied from https://github.com/4uiiurz1/pytorch-lars
 import torch
 from torch.optim.optimizer import Optimizer
 
