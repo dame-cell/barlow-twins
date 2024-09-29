@@ -37,6 +37,7 @@ if __name__ == "__main__":
     config = CFG()
     model = BarlowTwins(config=config)
     count_parameters(model)
+    model = torch.compile(model)
     
     setup_seed(args.seed)
     wandb.login(key="04098c64a0b88d5f4ff90335b7f75613041420c6")
