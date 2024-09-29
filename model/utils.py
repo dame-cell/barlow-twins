@@ -1,6 +1,7 @@
 import os 
 import torch 
 import random
+import torchvision
 import torchvision.transforms as transforms
 from PIL import Image, ImageOps, ImageFilter
 import numpy as np 
