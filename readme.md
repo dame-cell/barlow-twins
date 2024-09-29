@@ -20,9 +20,9 @@ cd model
 ```
 - To train the model you can simply just run this command 
 ```
-python3 train_model.py --batch_size 124 --checkpoint_dir "model" --epochs 500
+python3 train_model.py --batch_size 124 --checkpoint_dir "bt_model-part2" --epochs 500 --save_epoch 40 ```
 ```
-for the batch size it really depends on your hardware or GPUs ,if you are trying it on t4 try 124 anything better that t4 256 should do well.
+- For the batch size it really depends on your hardware or GPUs ,if you are trying it on t4 try 124 anything better that t4 256 should do well.
 
 # Obersvations and Experiments
 
