@@ -3,7 +3,7 @@ import random
 import torchvision.transforms as transforms
 from PIL import Image, ImageOps, ImageFilter
 import numpy as np 
-
+import shutil
 
 def count_parameters(model):
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -13,6 +13,39 @@ def count_parameters(model):
     
     print(f"Total trainable parameters: {formatted_params}")
     return total_params
+
+
+
+def safe_download_cifar10(root='data/cifar10', train=True, transform=None):
+    print(f"Attempting to load/download CIFAR-10 dataset to {root}")
+    try:
+        # Attempt to create the directory if it doesn't exist
+        os.makedirs(root, exist_ok=True)
+        
+        # Check if the directory is writable
+        if not os.access(root, os.W_OK):
+            print(f"Warning: No write access to {root}")
+        
+        # Try to load or download the dataset
+        dataset = torchvision.datasets.CIFAR10(root, train=train, download=True, transform=transform)
+        print("CIFAR-10 dataset loaded successfully")
+        return dataset
+    except RuntimeError as e:
+        print(f"Error loading CIFAR-10 dataset: {e}")
+        print("Attempting to clean the directory and re-download...")
+        
+        # Clean the directory
+        shutil.rmtree(root, ignore_errors=True)
+        os.makedirs(root, exist_ok=True)
+        
+        # Try again
+        try:
+            dataset = torchvision.datasets.CIFAR10(root, train=train, download=True, transform=transform)
+            print("CIFAR-10 dataset loaded successfully after cleaning")
+            return dataset
+        except Exception as e:
+            print(f"Failed to load CIFAR-10 dataset even after cleaning: {e}")
+            raise
 
 
 def setup_seed(seed=42):
