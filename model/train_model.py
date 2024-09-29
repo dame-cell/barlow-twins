@@ -69,8 +69,8 @@ def main(rank, world_size, args):
         wandb.init(project="barlow-twins-ddp", config=args, group="DDP-Experiment")
 
     transform = Transform()
-    train_data = safe_download_cifar10(root='data/cifar10', train=True, transform=transform)
-    val_data = safe_download_cifar10(root='data/cifar10', train=False, transform=transform)
+    train_data = safe_download_cifar10(root='data', train=True, transform=transform)
+    val_data = safe_download_cifar10(root='data', train=False, transform=transform)
 
     train_sampler = DistributedSampler(train_data, num_replicas=world_size, rank=rank, shuffle=True)
     val_sampler = DistributedSampler(val_data, num_replicas=world_size, rank=rank, shuffle=False)
