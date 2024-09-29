@@ -116,7 +116,7 @@ def main(rank, world_size, args):
             y2 = y2.to(device)
             optimizer.zero_grad()
 
-            with torch.cuda.amp.autocast(device_type=DEVICE, dtype=torch.float16):
+            with torch.cuda.amp.autocast(device_type="cuda", dtype=torch.float16):
                 loss = model(y1, y2)
 
             scaler.scale(loss).backward()
@@ -138,7 +138,7 @@ def main(rank, world_size, args):
             for val_step, ((y1, y2), _) in val_progress_bar:
                 y1 = y1.to(device)
                 y2 = y2.to(device)
-                with torch.cuda.amp.autocast(device_type=DEVICE, dtype=torch.float16):
+                with torch.cuda.amp.autocast(device_type="cuda", dtype=torch.float16):
                     val_loss += model(y1, y2)
 
         val_loss /= len(val_loader)
