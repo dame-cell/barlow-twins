@@ -69,8 +69,8 @@ def main(rank, world_size, args):
         wandb.init(project="barlow-twins-ddp", config=args, group="DDP-Experiment")
 
     transform = Transform()
-    train_data = torchvision.datasets.CIFAR10('data', train=True, download=True, transform=transform)
-    val_data = torchvision.datasets.CIFAR10('data', train=False, download=True, transform=transform)
+    train_data = torchvision.datasets.CIFAR10('data/cifar10', train=True, download=True, transform=transform)
+    val_data = torchvision.datasets.CIFAR10('data/cifar10', train=False, download=True, transform=transform)
 
     train_sampler = DistributedSampler(train_data, num_replicas=world_size, rank=rank, shuffle=True)
     val_sampler = DistributedSampler(val_data, num_replicas=world_size, rank=rank, shuffle=False)
