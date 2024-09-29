@@ -113,7 +113,7 @@ def main(rank, world_size, args):
             y1, y2 = y1.to(device), y2.to(device)
             optimizer.zero_grad()
 
-            with torch.amp.autocast(device_type="cuda, dtype=torch.float16):
+            with torch.amp.autocast(device_type="cuda", dtype=torch.float16):
                 loss = model(y1, y2)
 
             scaler.scale(loss).backward()
@@ -133,7 +133,7 @@ def main(rank, world_size, args):
         with torch.no_grad():
             for val_step, ((y1, y2), _) in enumerate(val_loader):
                 y1, y2 = y1.to(device), y2.to(device)
-                with torch.amp.autocast(device_type="cuda, dtype=torch.float16):
+                with torch.amp.autocast(device_type="cuda", dtype=torch.float16):
                     val_loss += model(y1, y2).item()
 
         val_loss /= len(val_loader)
