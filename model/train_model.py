@@ -27,7 +27,7 @@ def cleanup():
     dist.destroy_process_group()
 
 
-def warmup_lr(epoch, warmup_epochs=10):
+def warmup_lr(epoch, warmup_epochs=60):
     return (epoch + 1) / warmup_epochs if epoch < warmup_epochs else 1.0
 
 
