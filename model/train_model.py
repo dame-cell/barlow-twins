@@ -13,7 +13,7 @@ from model import BarlowTwins
 from optimizer import Lars
 from torchvision.transforms import ToTensor, Compose, Normalize, Resize
 from torch.optim.lr_scheduler import CosineAnnealingLR
-from utils import Transform, count_parameters, setup_seed
+from utils import Transform, count_parameters, setup_seed, safe_download_cifar10
 import os
 
 def setup(rank, world_size):
@@ -69,8 +69,8 @@ def main(rank, world_size, args):
         wandb.init(project="barlow-twins-ddp", config=args, group="DDP-Experiment")
 
     transform = Transform()
-    train_data = torchvision.datasets.CIFAR10('data', train=True, download=True, transform=transform)
-    val_data = torchvision.datasets.CIFAR10('data', train=False, download=True, transform=transform)
+    train_data = safe_download_cifar10(root='data/cifar10', train=True, transform=transform)
+    val_data = safe_download_cifar10(root='data/cifar10', train=False, transform=transform)
 
     train_sampler = DistributedSampler(train_data, num_replicas=world_size, rank=rank, shuffle=True)
     val_sampler = DistributedSampler(val_data, num_replicas=world_size, rank=rank, shuffle=False)
