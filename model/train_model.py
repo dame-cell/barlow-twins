@@ -39,8 +39,6 @@ def parse_args():
     parser.add_argument('--batch_size', type=int, default=256, help="Batch size for training and validation ")
     parser.add_argument('--weight_decay', type=float, default=1.5e-6, help="Weight decay for optimizer")
     parser.add_argument('--seed', type=int, default=42, help="Random seed for reproducibility ")
-    parser.add_argument('--image_path', type=str, help="Path to an image for inference visualization")
-    parser.add_argument('--mask_ratio', type=float, default=0.75, help="Masking ratio for MAE ")
     parser.add_argument('--checkpoint_dir', type=str, default="data", help="Where to save your checkpoint model ")
     parser.add_argument('--save_epoch', type=int, default=40, help="At what epoch to save your model")
     parser.add_argument('--world_size', type=int, default=2, help="Number of processes (GPUs) for DDP")
