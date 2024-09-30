@@ -10,7 +10,7 @@ from torch.optim import Adam
 from torchvision.transforms import ToTensor, Compose, Normalize, Resize
 from torch.optim.lr_scheduler import CosineAnnealingLR
 from utils import setup_seed, count_parameters
-from model import BarlowTwins  # Ensure this model is properly defined in your 'model.py'
+from model import BarlowTwins 
 from config import CFG 
 import os
 
@@ -58,9 +58,8 @@ if __name__ == "__main__":
     model.encoder.fc.weight.data.normal_(mean=0.0, std=0.01)
     model.encoder.fc.bias.data.zero_()
 
-    # Freeze all weights except for the linear layer
     for name, param in model.named_parameters():
-        if 'encoder.fc' not in name:  # Replace 'linear' with sthe actual name if it's different
+        if 'encoder.fc' not in name:  
             param.requires_grad = False
         else:
             param.requires_grad = True
