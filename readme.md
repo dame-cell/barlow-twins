@@ -33,9 +33,41 @@ hf_hub_download(repo_id="damerajee/barlow-twins-pt", filename="model.pt",local_d
 ```python
 !python3 evalute.py --epochs 5 --batch_size 256 --path_to_encoder_model path to your downloaded  model
 ```
-# Obersvations 
-We train the barlow twins model for 85 Epcohs  and 
+# Observations
 
+We trained the Barlow Twins model for 85 epochs and used Weights & Biases (wandb) to track the train loss and validation loss.
+
+| Train Loss | Validation Loss |
+|:----------:|:---------------:|
+| <img src="model/image/train_loss.png" width="900"> | <img src="model/image/val_loss.png" width="900"> |
+
+- The train loss went from **8000** to **3795**.
+- The validation loss went from **5000** to **4347**.
+
+It was pretty interesting; I trained the model on the CIFAR-10 dataset.
+
+### Evaluation
+
+We evaluated the model on the CIFAR-10 dataset in two stages:
+1. Without the pre-trained encoder
+2. With the pre-trained encoder
+
+We evaluated each stage with only **5 epochs**.
+
+| Metric                | Without Pre-trained Encoder | With Pre-trained Encoder |
+|-----------------------|----------------------------|--------------------------|
+| **Loss**              | 0.5079                     | 0.2193                   |
+| **Accuracy**          | 82.31%                     | 92.28%                   |
+| **Validation Loss**   | 1.1314                     | 0.2484                   |
+| **Validation Accuracy**| 64.77%                     | 91.03%                   |
+
+| Train Accuracy | Validation Accuracy |
+|:--------------:|:-------------------:|
+| <img src="model/image/train_acc.png" width="900"> | <img src="model/image/val.png" width="900"> |
+
+*The image at the bottom of this section shows the accuracy of the model with the encoder.*
+
+*really enjoyed this paper :)*
 ```bash
 @article{zbontar2021barlow,
   title={Barlow Twins: Self-Supervised Learning via Redundancy Reduction},
