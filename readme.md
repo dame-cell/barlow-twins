@@ -24,8 +24,17 @@ python3 train_model.py --batch_size 124 --checkpoint_dir "bt_model-part2" --epoc
 ```
 - For the batch size it really depends on your hardware or GPUs ,if you are trying it on t4 try 124 anything better that t4 256 should do well.
 
-# Obersvations and Experiments
-
+- To evaluate the pre-trained encoder model ,first you need to download the pre-trained mdoel
+```python
+from huggingface_hub import hf_hub_download
+hf_hub_download(repo_id="damerajee/barlow-twins-pt", filename="model.pt",local_dir="model")
+```
+- And then run this
+```python
+!python3 evalute.py --epochs 5 --batch_size 256 --path_to_encoder_model path to your downloaded  model
+```
+# Obersvations 
+We train the barlow twins model for 85 Epcohs  and 
 
 ```bash
 @article{zbontar2021barlow,
