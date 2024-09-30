@@ -65,7 +65,7 @@ We evaluated each stage with only **5 epochs**.
 |:--------------:|:-------------------:|
 | <img src="model/image/train_acc.png" width="900"> | <img src="model/image/val.png" width="900"> |
 
-*The image at the above  shows the accuracy of the model with the pretrained-encoder.*
+*The image above  shows the accuracy of the model with the pretrained-encoder.*
 
 *really enjoyed this paper :)*
 ```bash
