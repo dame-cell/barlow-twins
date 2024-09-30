@@ -44,7 +44,7 @@ We trained the Barlow Twins model for 85 epochs and used Weights & Biases (wandb
 - The train loss went from **8000** to **3795**.
 - The validation loss went from **5000** to **4347**.
 
-It was pretty interesting; I trained the model on the CIFAR-10 dataset.
+I only train the model on 88 epochs due to GPU limitations 
 
 ### Evaluation
 
