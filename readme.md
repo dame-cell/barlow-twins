@@ -31,7 +31,7 @@ hf_hub_download(repo_id="damerajee/barlow-twins-pt", filename="model.pt",local_d
 ```
 - And then run this
 ```python
-!python3 evalute.py --epochs 5 --batch_size 256 --path_to_encoder_model path to your downloaded  model
+python3 evalute.py --epochs 5 --batch_size 256 --path_to_encoder_model path to your downloaded  model
 ```
 # Observations
 
