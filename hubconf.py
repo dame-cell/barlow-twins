@@ -18,5 +18,6 @@ def resnet50(pretrained=True, **kwargs):
     if pretrained:
         url = 'https://dl.fbaipublicfiles.com/barlowtwins/ljng/checkpoint.pth'
         state_dict = torch.hub.load_state_dict_from_url(url, map_location='cpu')
+        print("state_dict",state_dict)
         model.load_state_dict(state_dict, strict=False)
     return model
