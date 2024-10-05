@@ -54,6 +54,7 @@ We evaluated the model on the CIFAR-10 dataset in two stages:
 
 We evaluated each stage with only **5 epochs**.
 
+
 | Metric                | Without Pre-trained Encoder | With Pre-trained Encoder |
 |-----------------------|----------------------------|--------------------------|
 | **Loss**              | 0.5079                     | 0.2193                   |
