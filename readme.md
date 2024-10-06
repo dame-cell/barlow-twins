@@ -58,9 +58,7 @@ We evaluated each stage with only **5 epochs**.
 
 | Metric                | Without Pre-trained Encoder | With Pre-trained Encoder |
 |-----------------------|----------------------------|--------------------------|
-| **Loss**              | 0.5079                     | 0.2193                   |
 | **Accuracy**          | 82.31%                     | 92.28%                   |
-| **Validation Loss**   | 1.1314                     | 0.2484                   |
 | **Validation Accuracy**| 64.77%                     | 91.03%                   |
 
 | Train Accuracy | Validation Accuracy |
