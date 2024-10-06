@@ -33,7 +33,7 @@ def warmup_lr(epoch):
         return 1
 
 
-# coped from https://github.com/facebookresearch/barlowtwins/blob/main/main.py
+# copied from https://github.com/facebookresearch/barlowtwins/blob/main/main.py
 class GaussianBlur(object):
     def __init__(self, p):
         self.p = p
@@ -45,7 +45,7 @@ class GaussianBlur(object):
         else:
             return img
 
-# coped from https://github.com/facebookresearch/barlowtwins/blob/main/main.py
+# copied from https://github.com/facebookresearch/barlowtwins/blob/main/main.py
 class Solarization(object):
     def __init__(self, p):
         self.p = p
@@ -56,7 +56,7 @@ class Solarization(object):
         else:
             return img
 
-# coped from https://github.com/facebookresearch/barlowtwins/blob/main/main.py
+# copied from https://github.com/facebookresearch/barlowtwins/blob/main/main.py
 class Transform:
     def __init__(self):
         self.transform = transforms.Compose([
