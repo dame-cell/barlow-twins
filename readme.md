@@ -43,6 +43,7 @@ We trained the Barlow Twins model for 85 epochs and used Weights & Biases (wandb
 
 - The train loss went from **8000** to **3795**.
 - The validation loss went from **5000** to **4347**.
+- I tried training a resnet50 model with no pretrained weights from timm but it took too long to converge ,so i just used a pre-trained weights 
 
 I only train the model on 88 epochs due to GPU limitations 
 
